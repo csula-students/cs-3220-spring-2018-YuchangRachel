@@ -23,7 +23,7 @@ function main () {
 	//       and then you will need to use `addEventListener` to bind event
 
 	// define web components
-	window.customElements.define('game-generator', GeneratorComponent);
+	window.customElements.define('game-generator', GeneratorComponent(store));
 
 	// start game loop
 	loop();
