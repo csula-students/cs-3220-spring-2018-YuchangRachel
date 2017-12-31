@@ -2,8 +2,12 @@ import '@webcomponents/webcomponentsjs';
 
 import {loop} from './game';
 import Store from './store';
-import GeneratorComponent from './views/generator';
+
+import ButtonComponent from './views/button';
+import CounterComponent from './views/counter';
 import ExampleComponent from './views/example';
+import GeneratorComponent from './views/generator';
+import StoryBookComponent from './views/story-book';
 
 main();
 
@@ -12,7 +16,7 @@ function main () {
 	// TODO: fill the blank based on the theme you have choosen
 	const initialState = {
 		example: 'Hello custom element',
-		resource: [],
+		resource: {},
 		generators: [],
 		story: []
 	};
@@ -20,16 +24,15 @@ function main () {
 	// initialize store
 	const store = new Store(reducer, initialState);
 
-	// TODO: bind click event to "le button"
-	// hint: you will need to use `querySelector` to find button first
-	//       and then you will need to use `addEventListener` to bind event
-
 	// define web components
 	window.customElements.define('component-example', ExampleComponent(store));
+	window.customElements.define('game-button', ButtonComponent(store));
+	window.customElements.define('game-counter', CounterComponent(store));
 	window.customElements.define('game-generator', GeneratorComponent(store));
+	window.customElements.define('game-story-book', StoryBookComponent(store));
 
 	// start game loop
-	loop();
+	loop(store);
 }
 
 function reducer (state, action) {
