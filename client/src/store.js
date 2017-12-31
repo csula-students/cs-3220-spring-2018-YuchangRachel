@@ -6,20 +6,26 @@ export default class Store {
 		// order
 		this.listeners = [];
 		// initial state
-		this.state = initialState;
+		this.__state = initialState;
 	}
 
-	getState () {
-		return deepCopy(this.state);
+	// READ only state
+	get state () {
+		return deepCopy(this.__state);
 	}
 
+	// only way to change state is by dispatching actions and go through reducer
 	dispatch (action) {
-		this.state = this.reducer(deepCopy(this.state), action);
+		this.__state = this.reducer(this.state, action);
 		this.listeners.forEach(l => l(this.state));
 	}
 
+	// Observable pattern to listen for changes
 	subscribe (listener) {
 		this.listeners.push(listener);
+	}
+	unsubscribe (listener) {
+		this.listeners = this.listeners.filter(l => l != listener);
 	}
 }
 
