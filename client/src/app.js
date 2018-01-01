@@ -23,6 +23,7 @@ function main () {
 
 	// initialize store
 	const store = new Store(reducer, initialState);
+	console.log(ExampleComponent(store));
 
 	// define web components
 	window.customElements.define('component-example', ExampleComponent(store));
@@ -30,6 +31,9 @@ function main () {
 	window.customElements.define('game-counter', CounterComponent(store));
 	window.customElements.define('game-generator', GeneratorComponent(store));
 	window.customElements.define('game-story-book', StoryBookComponent(store));
+
+	// For ease of debugging purpose, we will expose the critical store under window
+	window.store = store;
 
 	// start game loop
 	loop(store);
