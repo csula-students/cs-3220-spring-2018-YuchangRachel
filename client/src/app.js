@@ -2,6 +2,7 @@ import '@webcomponents/webcomponentsjs';
 
 import {loop} from './game';
 import Store from './store';
+import reducer from './reducer';
 
 import ButtonComponent from './views/button';
 import CounterComponent from './views/counter';
@@ -33,25 +34,9 @@ function main () {
 	window.customElements.define('game-story-book', StoryBookComponent(store));
 
 	// For ease of debugging purpose, we will expose the critical store under window
+	// ps: window is global
 	window.store = store;
 
 	// start game loop
 	loop(store);
 }
-
-function reducer (state, action) {
-	switch (action.type) {
-	case 'EXAMPLE_MUTATION':
-		state.example = action.payload;
-		return state;
-	case 'INCREMENT':
-		state.resource.value ++;
-		return state;
-	case 'ADD_GENERATOR':
-		state.generators.push(action.payload);
-		return state;
-	default:
-		return state;
-	}
-}
-
