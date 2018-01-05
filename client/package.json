@@ -8,7 +8,7 @@
   },
   "scripts": {
     "pretest": "npm install",
-    "test": "mocha --require babel-register",
+    "test": "jest",
     "build": "webpack"
   },
   "author": "Eric Liao <rcliao01@gmail.com>",
@@ -18,11 +18,11 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.0.4",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
-    "chai": "^4.1.2",
-    "mocha": "^4.0.1",
+    "jest": "^22.0.4",
+    "regenerator-runtime": "^0.11.1",
     "webpack": "^3.10.0"
   }
 }
