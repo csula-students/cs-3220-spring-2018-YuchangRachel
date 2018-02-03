@@ -1,7 +1,7 @@
 /*eslint-env node, jest */
 import reducer from '../src/reducer';
 
-it('reducer should be able to set example state from "EXAMPLE_MUTATION" action', () => {
+test('should be able to set example state from "EXAMPLE_MUTATION" action', () => {
 	const action = {
 		type: 'EXAMPLE_MUTATION',
 		payload: 'mutated'
