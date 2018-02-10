@@ -4,33 +4,153 @@
 		<meta charset="UTF-8">
 		<title>Incremental game</title>
 		<style>
+@media (max-width: 684px) {
+    body {
+        font-size: 1.53rem;
+    }
+}
+h1 {
+	font-family: Arial;
+	font-size:30px;
+	text-align:center;
+}
+			nav {
+				text-align:center;
+			}
+			div {
+				font-size:15px;
+				padding-top:10px;
+					
+				padding-bottom:10px;
+			}
 			input {
-				font-size: 16px;
-				padding: 0.5em 1em;
 
+				margin-bottom:10px;
+				font-size: 15px;
+				padding: 0.5em 0.5em;
+				padding-bottom:10px;
+				border:2px solid #000000;
+				width:7em;
 			}
 			button {
-				color: #fff;
-				background-color: #009688;
-				font-size: 16px;
-				padding: 0.5em 1em;
-			}	
+				color: black;
+				background-color: white;
+				border-radius:12px;
+				font-size: 15px;
+				border:2px solid #000000;
+				padding-bottom:5px;
+				padding-top:5px;
+				padding-right:30px;
+				padding-left:30px;
+			}
+			a {
+				margin-top:50px;
+				font-size:15px;
+				padding:20px;
+			}
+			.parent {
+				width:250px;
+				height:250px;
+				position:relative;
+			}
+			.child {
+				width:40px;
+				height:120px;
+				position:absolute;
+				bottom:0px;
+				right:0px;
+			}
+			#customers {
+				border-collapse:collapse;
+				position: absolute;
+				top:100px;
+				right:0;
+				float: right;
+				width: auto;
+			}
+			#customers th {
+				text-align:center;
+				padding:20px;
+			}
+			#customers tr {
+				text-align:center;
+				height:60px;
+			}
+			#customers tr:nth-child(even){background-color: #f2f2f2}
 		</style>
 	</head>
 	<body>
 		<h1>Incremental Game Framework</h1>
 		<nav>
-			<a href = "about.html"> Game information </a>
+			<a href = "admin-info.html"> Game information </a>
 			|
-			<a href  = "about.html"> Generators </a>
+			<a href  = "admin-generators.html"> Generators </a>
 			|
-			<a href = "about.html"> Events </a>
+			<a href = "admin-events.html"> Events </a>
 		</nav>
-		Game Name
+		<div>
+			Event Name
+		</div>
 		<form action="">
-			<input id="Cookie Clicker" type="text">
+			<input type="text" value="Grandma">
 		</form>
-		<button>Save</button>
+		<div>
+			Event Description 
+		</div>
+			<form action="">
+				<textarea name="Text1" value="Text" rows="5" cols="50" style="border:solid 2px black;"></textarea>
+			</form>
+		<div class="parent">
+			Trigger At
+			<form action="">	
+			<input type="text" value="10">
+			</form>
+			<div class="child">
+				<button class="bottomright">Add{Edit}</button>
+			</div>
+		</div>
+		<div>
+			<table id="customers">
+				<tr>
+					<th width=60%>Name</th>
+					<th>Description</th>
+					<th>Trigger At</th>
+				</tr>
+				<tr>
+					<td width=60% text-align:left>Grandma</td>
+					<td>Lorem...</td>
+					<td>10</td>
+				
+				</tr>
+				<tr>
+					<td width=60%>Factory</td>
+					<td>Lorem...</td>
+					<td>50</td>
+				
+				</tr>
+				<tr>
+					<td width=60%>Mine</td>
+					<td>Lorem...</td>
+					<td>200</td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
 	</body>
 
 </html>
