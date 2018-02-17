@@ -1,0 +1,15 @@
+Theme:
+# Cookie clicker
+
+Resource:
+* Cookie
+
+Generators:
+* Cursor
+* Grandmom
+* Cookie Factory
+
+Story:
+* Cookie? Click on the button to create cookies.
+* Your cookies are talked about for miles around.
+* C is for cookie. And that is good enough for me.
