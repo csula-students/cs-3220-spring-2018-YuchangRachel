@@ -5,18 +5,35 @@ export default function (store) {
 			this.store = store;
 
 			// TODO: render generator initial view
-			this.textContent = this.store.state.example; 
+			this.textContent = this.store.state.example;
 
 			// TODO: subscribe to store on change event
 			this.onStageChange = this.handleStateChange.bind(this);
 
 			// TODO: add click event
-			this.addEventListener('click', () => {
+			document.querySelector('#Cursor').addEventListener('click',()=>{
 				this.store.dispatch({
-					type: 'EXAMPLE_MUTATION',
-					payload: 'Click button',
+					type: 'BUY_GENERATOR',
+					payload : 'Cursor',
+
 				});
 			});
+			document.querySelector('#Grandma').addEventListener('click',()=>{
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload : 'Grandma',
+
+				});
+			});
+
+			document.querySelector('#Factory').addEventListener('click',()=>{
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload : 'Factory',
+
+				});
+			});
+			
 		}
 	
 		handleStateChange(newState){
