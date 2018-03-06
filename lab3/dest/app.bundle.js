@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,37 +70,60 @@
 "use strict";
 
 
-__webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	growthRatio: 0.05,
+	actions: {
+		EXAMPLE: 'EXAMPLE_MUTATION',
+		BUTTON_CLICK: 'MY_AMAZING_BUTTON_CLICK',
+		BUY_GENERATOR: 'BUY_GENERATOR'
+	}
+};
 
-var _game = __webpack_require__(4);
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var _store = __webpack_require__(5);
+"use strict";
+
+
+__webpack_require__(2);
+
+var _game = __webpack_require__(5);
+
+var _store = __webpack_require__(6);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(6);
+var _reducer = __webpack_require__(7);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(7);
+var _button = __webpack_require__(8);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(8);
+var _counter = __webpack_require__(9);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(9);
+var _example = __webpack_require__(10);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(10);
+var _generator = __webpack_require__(11);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(11);
+var _storyBook = __webpack_require__(12);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -168,10 +191,35 @@ main();
 // main function wraps everything at top level
 function main() {
 	// TODO: fill the blank based on the theme you have choosen
+	// assign default value at the beginning
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [{
+			type: 'BUY_GENERATOR',
+			name: 'Cursor',
+			description: 'Cursor produces 5 cookies per minute, its purchase price increased by5%.',
+			rate: 5,
+			quantity: 0,
+			baseCost: 10,
+			unlockValue: 10
+		}, {
+			type: 'BUY_GENERATOR',
+			name: 'Grandma',
+			description: 'Grandma produces 10 cookies per minute, its purchase price increased by10%.',
+			rate: 10,
+			quantity: 0,
+			baseCost: 100,
+			unlockValue: 100
+		}, {
+			type: 'BUY_GENERATOR',
+			name: 'Factory',
+			description: 'Factory produces 50 cookies per minute, its purchase price increased by20%',
+			rate: 25,
+			quantity: 0,
+			baseCost: 1000,
+			unlockValue: 1000
+		}],
 		story: []
 	};
 
@@ -198,7 +246,7 @@ function main() {
 }
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -399,10 +447,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -429,7 +477,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -619,7 +667,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -653,7 +701,7 @@ function increment(state, modifier = 1) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -724,7 +772,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -734,38 +782,31 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = reducer;
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function reducer(state, action) {
 	switch (action.type) {
-		case 'EXAMPLE_MUTATION':
+		case _constants2.default.actions.EXAMPLE:
 			state.example = action.payload;
 			return state;
 
-		case 'BUY_GENERATOR':
+		case _constants2.default.actions.BUTTON_CLICK:
+			state.counter++;
+			return state;
 
-			if (data - id === '0') {
-				state.type = 'GENERATOR';
-				state.name = 'Cursor';
-				state.baseCost = state.getCost();
-				state.quantity++;
-				state.counter = state.counter - state.baseCost;
-				window.state.counter = state.counter;
-				state.unlockValue = state.baseCost;
-			} else if (data - id === '1') {
-				state.type = 'GENERATOR';
-				state.name = 'Grandma';
-				state.baseCost = state.getCost();
-				state.quantity++;
-				state.counter = state.counter - state.baseCost;
-				window.state.counter = state.counter;
-				state.unlockValue = state.baseCost;
-			} else if (data - id === '2') {
-				state.type = 'GENERATOR';
-				state.name = 'Factory';
-				state.baseCost = state.getCost();
-				state.quantity++;
-				state.counter = state.counter - state.baseCost;
-				window.state.counter = state.counter;
-				state.unlockValue = state.baseCost;
+		case _constants2.default.actions.BUY_GENERATOR:
+			for (var i = 0; i < state.generators.length; i++) {
+				const generator = state.generators[i];
+				if (generator.name === action.payload.name) {
+					state.counter = state.counter - generator.baseCost;
+					generator.quantity = action.payload.quantity++;
+					return state;
+				}
 			}
 
 		default:
@@ -774,7 +815,7 @@ function reducer(state, action) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -790,16 +831,37 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 
-			this.onStateChange = this.handleStateChange.bind(this);
-
 			// TODO: add click event to increment counter
 			// hint: use "store.dispatch" method (see example component)
+		}
+
+		connectedCallback() {
+			console.log('ExampleComponent#onConnectedCallback');
+			this.innerHTML = '<button>Collect Cookies</button>';
+			this.addEventListener('click', () => {
+				console.log('Hello click');
+
+				this.store.dispatch({
+					type: _constants2.default.actions.BUTTON_CLICK
+				});
+			});
+		}
+
+		disconnectedCallback() {
+			console.log('ExampleComponent#onDisconnectedCallback');
+			this.store.unsubscribe(this.onStateChange);
 		}
 	};
 };
 
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -822,9 +884,11 @@ exports.default = function (store) {
 		handleStateChange(newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
+			this.innerHTML = `Cookies: ${newState.counter}`;
 		}
 
 		connectedCallback() {
+			this.innerHTML = 'Cookies: 0';
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -835,7 +899,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -883,7 +947,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -900,55 +964,67 @@ exports.default = function (store) {
 			this.store = store;
 
 			// TODO: render generator initial view
-			this.textContent = this.store.state.example;
+			this.innerHTML = this.render();
 
 			// TODO: subscribe to store on change event
-			this.onStageChange = this.handleStateChange.bind(this);
+			this.onStateChange = this.handleStateChange.bind(this);
 
 			// TODO: add click event
-			document.querySelector('#Cursor').addEventListener('click', () => {
+			this.addEventListener('click', () => {
+				console.log('buy generator');
+
 				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload: 'Cursor'
-
-				});
-			});
-			document.querySelector('#Grandma').addEventListener('click', () => {
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload: 'Grandma'
-
-				});
-			});
-
-			document.querySelector('#Factory').addEventListener('click', () => {
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload: 'Factory'
-
+					type: _constants2.default.actions.BUY_GENERATOR,
+					payload: {
+						name: this.store.state.generators[this.dataset.id].name,
+						quantity: this.store.state.generators[this.dataset.id].quantity
+					}
 				});
 			});
 		}
 
 		handleStateChange(newState) {
-			console.log('GeneratorComponent#stateChange', this, newState);
-			this.textContent = newState.example;
+			this.innerHTML = this.render();
+			console.log('CounterComponent#stateChange', this, newState);
 		}
 
-		connectedCallback() {
-			console.log('GeneratorComponent#onConnectedCallback');
+		connectedCallBack() {
+			console.log(this, this.dataset.id);
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback() {
-			console.log('GeneratorComponent#onDisconnectedCallback');
 			this.store.unsubscribe(this.onStateChange);
+		}
+
+		render() {
+			return `
+			<div class="generator_box">
+				<div class="generator_header">
+					<h3 class="generator_name">${this.store.state.generators[this.dataset.id].name}</h3>
+					<a class="generator_quantity">${this.store.state.generators[this.dataset.id].quantity}</a>
+				</div>
+
+				<p class ="generator_description">${this.store.state.generators[this.dataset.id].description}</p>
+
+				<div class="generator_footer">
+					<a class="generator_rate">${this.store.state.generators[this.dataset.id].rate}/60</a>
+					<button class="generator_button">${this.store.state.generators[this.dataset.id].unlockValue} Cookies</button>
+				</div>
+			</div>
+			`;
 		}
 	};
 };
 
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

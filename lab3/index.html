@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="app.css">
+		<title>Incremental game</title>
+	</head>
+	<body>
+		<h1>Cookie Cliker</h1>
+
+		<div id="story_box" >
+			<p>Cookie? Click on the button to create cookies.
+			<br>
+			Your cookies are talked about for miles around.
+			<br>
+			C is for cookie. And that is good enough for me.
+			</p>
+		</div>
+
+		<game-button></game-button>
+
+		<game-counter></game-counter>
+
+		<div class="generators">
+			<game-generator data-id="0"></game-generator>
+			<game-generator data-id="1"></game-generator>
+			<game-generator data-id="2"></game-generator>
+		</div>
+
+
+		<!-- import webcomponent polyfill for other browsers -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js"></script>
+		<script src ='dest/app.bundle.js'></script>
+	</body>
+</html>
