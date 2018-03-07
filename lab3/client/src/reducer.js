@@ -16,7 +16,7 @@ export default function reducer (state, action) {
 			const generator = state.generators[i];
 			if (generator.name === action.payload.name) {
 				state.counter = state.counter - generator.baseCost; 
-				generator.quantity = action.payload.quantity++; 
+				generator.quantity = action.payload.quantity+1; 
 				return state;
 			}
 		}
