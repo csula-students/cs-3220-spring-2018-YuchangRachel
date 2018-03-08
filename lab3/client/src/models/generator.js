@@ -28,7 +28,9 @@ export default class Generator {
 	 */
 	getCost () {
 		// TODO: implement the function according to doc above
-		return this.baseCost * (1 + constants.growthRatio) ^ this.quantity;
+		// not pass npm test: return this.baseCost * (1 + this.rate / 100) ^ this.quantity;
+		var cost = parseFloat((this.baseCost * Math.pow((1 + constants.growthRatio), this.quantity)).toFixed(2));
+		return cost;
 	}
 
 	/**
