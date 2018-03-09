@@ -1,0 +1,33 @@
+body {
+	font-size: 1.1em;
+}
+h1 {
+	color: black;
+	font-family: "Serif";
+}
+game-story-book {
+	width:100%;
+	height:100px;
+	background-color: #37474f;
+	font-size: 10px;
+	color:white;
+	overflow-y: auto;
+}
+.generators {
+	display: flex;
+}
+game-generator {
+	border: 1px solid black;
+	max-width: 15em;
+	margin: 1em;
+	padding: .5em;
+}
+button {
+    font-size: .8em;
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: light gray;
+    transition: all ease .3s;
+    float: right;
+}
+
