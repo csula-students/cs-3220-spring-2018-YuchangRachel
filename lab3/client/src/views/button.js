@@ -5,7 +5,7 @@ export default function (store) {
 		constructor () {
 			super();
 			this.store = store;
-
+			
 			// TODO: add click event to increment counter
 			// hint: use "store.dispatch" method (see example component)
 		}

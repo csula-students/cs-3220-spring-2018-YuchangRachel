@@ -862,33 +862,22 @@ function reducer(state, action) {
 			return state;
 
 		case _constants2.default.actions.BUTTON_CLICK:
-
 			state.counter++;
-
 			return state;
 
 		case _constants2.default.actions.BUY_GENERATOR:
-
 			for (var i = 0; i < state.generators.length; i++) {
-
 				if (state.generators[i].name === action.payload.name) {
-
 					const generator = new _generator2.default(state.generators[i]);
-
 					state.generators[i].baseCost = generator.getCost();
-
 					state.counter = state.counter - generator.getCost();
-
 					state.generators[i].quantity++;
 				}
 			}
-
 			return state;
 
 		default:
-
 			return state;
-
 	}
 }
 
@@ -1036,101 +1025,58 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (store) {
-
 	return class GeneratorComponent extends window.HTMLElement {
-
 		constructor() {
-
 			super();
-
 			this.store = store;
 
 			// TODO: render generator initial view
-
 			this.innerHTML = this.render();
 
 			// TODO: subscribe to store on change event
-
 			this.onStateChange = this.handleStateChange.bind(this);
 
 			// TODO: add click event
-
-			this.querySelector('button').addEventListener('click', () => {
-
+			this.querySelector('.generator_button').addEventListener('click', () => {
 				const generator = new _generator2.default(this.store.state.generators[this.dataset.id]);
-
 				this.store.dispatch({
-
 					type: _constants2.default.actions.BUY_GENERATOR,
-
 					payload: {
-
-						name: generator.name
-
+						name: generator.name,
+						quantity: generator.quantity
 					}
-
 				});
 			});
 		}
 
 		handleStateChange(newState) {
-
 			console.log('GeneratorComponent#stateChange', this, newState);
-
 			const generator = newState.generators[this.dataset.id];
-
 			this.querySelector('.generator_quantity').innerHTML = generator.quantity;
-
 			this.querySelector('.generator_button').innerHTML = `${generator.baseCost} Cookies`;
 		}
 
 		connectedCallback() {
-
 			console.log('GeneratorComponent#stateChange');
-
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback() {
-
 			this.store.unsubscribe(this.onStateChange);
 		}
 
 		render() {
-
 			const generator = this.store.state.generators[this.dataset.id];
-
 			return `
-
-			<div class="generator_box">
-
-				<div class="generator_header">
-
-					<h3 class="generator_name">${generator.name}</h3>
-
-					<a class="generator_quantity">${generator.quantity}</a>
-
-				</div>
-
-
+				<h3 class="generator_name">${generator.name}</h3>
+				<span class="generator_quantity">${generator.quantity}</span>
 
 				<p class ="generator_description">${generator.description}</p>
 
+				<a class="generator_rate">${generator.rate}/60</a>
+				<button class="generator_button">${generator.baseCost} Cookies</button>
 
-
-				<div class="generator_footer">
-
-					<a class="generator_rate">${generator.rate}/60</a>
-
-					<buy-button data-id="${generator.name}"></buy-button>
-
-					<button class="generator_button">${generator.baseCost} Cookies</button>
-
-				</div>
-
-			</div>
-
-			`;
+				`;
 		}
 
 	};

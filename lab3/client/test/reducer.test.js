@@ -17,7 +17,7 @@ test('should be able to set example state from "EXAMPLE_MUTATION" action', () =>
 
 test('should be able to muate resource and generators on "BUY_GENERATOR" action', () => {
 	const action = {
-		type: constants.BUY_GENERATOR,
+		type: constants.actions.BUY_GENERATOR,
 		payload: {
 			name: 'Grandma',
 			quantity: 1
