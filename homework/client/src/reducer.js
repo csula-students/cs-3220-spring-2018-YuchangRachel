@@ -35,7 +35,7 @@ export default function reducer(state, action) {
 			const s = new Story(story);
 			if(s.isUnlockYet(state.counter)){
 				s.state = "visible";
-				story.state = g.state;
+				story.state = s.state;
 
 			}
 		});

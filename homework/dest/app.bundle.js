@@ -920,10 +920,10 @@ function reducer(state, action) {
 
 		case _constants2.default.actions.CHECK_STORY:
 			state.stories.forEach(story => {
-				const g = new _story2.default(story);
-				if (g.isUnlockYet(state.counter)) {
-					g.state = "visible";
-					story.state = g.state;
+				const s = new _story2.default(story);
+				if (s.isUnlockYet(state.counter)) {
+					s.state = "visible";
+					story.state = s.state;
 				}
 			});
 			return state;
@@ -1217,7 +1217,7 @@ exports.default = function (store) {
 				if (story.state === 'visible') {
 					console.log(story);
 
-					this.innerHTML = `<p>${story.name} <br> ${story.description}</p>`;
+					this.innerHTML = `<p>${story.name}</p>`; //update storybox
 				}
 			});
 		}

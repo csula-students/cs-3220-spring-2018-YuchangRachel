@@ -22,15 +22,15 @@ export function loop (store) {
 	console.log('generate cookies: ', morecookie);
 
 	store.dispatch({
-					type: constants.actions.INCREMENT,
-					payload: morecookie  
-				});
+		type: constants.actions.INCREMENT,
+		payload: morecookie  
+	});
 
 
 	// TODO: triggers stories from story to display state if they are passed
 	//       the `triggeredAt` points
 	// hint: use store.dispatch to send event for changing events state
-	
+
 	store.dispatch({
 		type: constants.actions.CHECK_STORY
 	});
