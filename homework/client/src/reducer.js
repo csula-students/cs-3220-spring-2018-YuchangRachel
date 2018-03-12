@@ -1,5 +1,7 @@
 import constants from './constants.js';
-import Generator from './models/generator'
+import Generator from './models/generator';
+import Story from './models/story';
+
 
 export default function reducer(state, action) {
 	switch (action.type) {
@@ -12,15 +14,32 @@ export default function reducer(state, action) {
 			return state;
 
 		case constants.actions.BUY_GENERATOR:
-			for (var i = 0; i < state.generators.length; i++) {
-				if (state.generators[i].name === action.payload.name) {
-					const generator = new Generator(state.generators[i]);
-					state.generators[i].baseCost = generator.getCost();
-					state.counter = state.counter - generator.getCost();
-					state.generators[i].quantity++
+			state.generators.forEach(generator => {
+			if(generator.name === action.payload.name){
+				const g = new Generator(generator);
+				let cost = g.getCost(); 
+				if(cost <= state.counter){ 
+					state.counter -= cost; 
+					generator.quantity++;
+					generator.unlockValue = g.getCost();  //new quantity 
+				}
+				else {
+					alert('not enough cookies!!!');
 				}
 			}
-			return state;
+		});
+		return state;
+
+		case constants.actions.CHECK_STORY:
+		state.stories.forEach((story) => {
+			let g = new Story(story);
+			if(g.isUnlockYet(state.counter)){
+				g.state = "visible";
+				story.state = g.state;
+
+			}
+		});
+		return state;
 
 		default:
 			return state;

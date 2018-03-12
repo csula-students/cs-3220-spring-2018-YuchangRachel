@@ -163,23 +163,23 @@ var _reducer = __webpack_require__(8);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(9);
+var _button = __webpack_require__(10);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(10);
+var _counter = __webpack_require__(11);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(11);
+var _example = __webpack_require__(12);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(12);
+var _generator = __webpack_require__(13);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(13);
+var _storyBook = __webpack_require__(14);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -772,23 +772,24 @@ function loop(store) {
 	// hint: read how many "generators" in store and iterate through them to
 	//       count how many value to increment to "resource"
 	// hint: remember to change event through `store.dispatch`
-	//console.log('Game loop runnin');
+	console.log('Game loop runnin');
+	let counter = 0;
+	store.state.generators.forEach(element => {
+		counter += element.rate * element.quantity;
+	});
 
-
-	for (var i = 0; i < store.generators.length; i++) {
-		if (store.generators[i].name === action.payload.name) {
-			const generator = new _generator2.default(store.generators[i]);
-			store.counter = store.counter + generator.generate();
-
-			store.dispatch({
-				type: _constants2.default.actions.INCREMENT
-			});
-		}
-	}
+	store.dispatch({
+		type: _constants2.default.actions.INCREMENT,
+		payload: counter
+	});
 
 	// TODO: triggers stories from story to display state if they are passed
 	//       the `triggeredAt` points
 	// hint: use store.dispatch to send event for changing events state
+
+	store.dispatch({
+		type: _constants2.default.actions.CHECK_STORY
+	});
 
 	// recursively calls loop method every second
 	setTimeout(loop.bind(this, store), interval);
@@ -885,6 +886,10 @@ var _generator = __webpack_require__(1);
 
 var _generator2 = _interopRequireDefault(_generator);
 
+var _story = __webpack_require__(9);
+
+var _story2 = _interopRequireDefault(_story);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function reducer(state, action) {
@@ -898,14 +903,29 @@ function reducer(state, action) {
 			return state;
 
 		case _constants2.default.actions.BUY_GENERATOR:
-			for (var i = 0; i < state.generators.length; i++) {
-				if (state.generators[i].name === action.payload.name) {
-					const generator = new _generator2.default(state.generators[i]);
-					state.generators[i].baseCost = generator.getCost();
-					state.counter = state.counter - generator.getCost();
-					state.generators[i].quantity++;
+			state.generators.forEach(generator => {
+				if (generator.name === action.payload.name) {
+					const g = new _generator2.default(generator);
+					let cost = g.getCost();
+					if (cost <= state.counter) {
+						state.counter -= cost;
+						generator.quantity++;
+						generator.unlockValue = g.getCost(); //new quantity 
+					} else {
+						alert('not enough cookies!!!');
+					}
 				}
-			}
+			});
+			return state;
+
+		case _constants2.default.actions.CHECK_STORY:
+			state.stories.forEach(story => {
+				let g = new _story2.default(story);
+				if (g.isUnlockYet(state.counter)) {
+					g.state = "visible";
+					story.state = g.state;
+				}
+			});
 			return state;
 
 		default:
@@ -915,6 +935,51 @@ function reducer(state, action) {
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+class Story {
+	/**
+  * create a new story based on the meta passed in argument
+  * @constructor
+  * @param {object} meta - the meta data for story
+  */
+	constructor(meta) {
+		this.name = meta.name;
+		this.description = meta.description;
+		this.triggeredAt = meta.triggeredAt;
+		this.state = meta.state;
+	}
+
+	/**
+  * isUnlockYet checks if this story is ready to be unlocked yet
+  * @param {number} value - the resource value at the moment
+  * @return {boolean} if this story is unlockable
+  */
+	isUnlockYet(value) {
+		// TODO: implement based on doc
+		if (value >= this.triggeredAt) return true;
+
+		return false;
+	}
+
+	/**
+  * unlock simply unlock the story to visible state
+  */
+	unlock() {
+		// TODO: change the story state to "visible"
+		this.state = 'visible';
+	}
+}
+exports.default = Story;
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -962,7 +1027,7 @@ var _constants2 = _interopRequireDefault(_constants);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1000,7 +1065,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1048,7 +1113,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1087,7 +1152,7 @@ exports.default = function (store) {
 			console.log('GeneratorComponent#stateChange', this, newState);
 			const generator = newState.generators[this.dataset.id];
 			this.querySelector('.generator_quantity').innerHTML = generator.quantity;
-			this.querySelector('.generator_button').innerHTML = `${generator.baseCost} Cookies`;
+			this.querySelector('.generator_button').innerHTML = `${generator.unlockValue} Cookies`;
 		}
 
 		connectedCallback() {
@@ -1126,7 +1191,7 @@ var _generator2 = _interopRequireDefault(_generator);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1148,6 +1213,11 @@ exports.default = function (store) {
 
 		handleStateChange(newState) {
 			// TODO: display story based on the state "resource" and "stories"
+			this.store.state.stories.forEach(story => {
+				if (story.state === 'visible') {
+					this.innerHTML += `<p>${story.name} <br> ${story.description}</p>`;
+				}
+			});
 		}
 
 		connectedCallback() {
