@@ -31,6 +31,7 @@ export default function reducer(state, action) {
 		return state;
 
 	case constants.actions.CHECK_STORY:
+
 		state.stories.forEach(story => {
 			const s = new Story(story);
 			if(s.isUnlockYet(state.counter)){

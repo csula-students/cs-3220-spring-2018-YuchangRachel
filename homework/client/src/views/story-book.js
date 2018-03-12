@@ -4,7 +4,7 @@ export default function (store) {
 			super();
 			this.store = store;
 			// TODO: initial DOM rendering of story itself
-
+			this.innerHTML = `<p>Story begins</p>`;
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
@@ -14,7 +14,7 @@ export default function (store) {
 				if(story.state === 'visible'){
 					console.log(story);
 
-					this.innerHTML = `<p>${story.name}</p>`;     //update storybox
+					this.innerHTML = `<p>${story.name}<br>${story.description}</p>`;     //update storybox
 				}
 			});
 		

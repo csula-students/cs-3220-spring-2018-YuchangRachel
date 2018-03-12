@@ -20,7 +20,7 @@ export default function (store) {
 
 				this.store.dispatch({
 					type: constants.actions.INCREMENT,
-					payload: 1
+					payload: 1     //pass string same as counter++	 
 				});
 			});
 		}

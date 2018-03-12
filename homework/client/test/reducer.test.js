@@ -55,12 +55,12 @@ test('should be able to mutate story state on "CHECK_STORY" action', () => {
 	const initialState = {
 		counter: 11,
 		generators: [mock.generator],
-		story: [mock.story]
+		stories: [mock.story]
 	};
 	const expected = {
 		counter: 11,
 		generators: [mock.generator],
-		story: [Object.assign({}, mock.story, {state: 'visible'})]
+		stories: [Object.assign({}, mock.story, {state: 'visible'})]
 	};
 	expect(reducer(initialState, action)).toEqual(expected);
 });

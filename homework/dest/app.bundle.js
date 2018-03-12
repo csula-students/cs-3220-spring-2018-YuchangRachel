@@ -919,6 +919,7 @@ function reducer(state, action) {
 			return state;
 
 		case _constants2.default.actions.CHECK_STORY:
+
 			state.stories.forEach(story => {
 				const s = new _story2.default(story);
 				if (s.isUnlockYet(state.counter)) {
@@ -1009,7 +1010,7 @@ exports.default = function (store) {
 
 				this.store.dispatch({
 					type: _constants2.default.actions.INCREMENT,
-					payload: 1
+					payload: 1 //pass string same as counter++	 
 				});
 			});
 		}
@@ -1207,7 +1208,7 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 			// TODO: initial DOM rendering of story itself
-
+			this.innerHTML = `<p>Story begins</p>`;
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
@@ -1217,7 +1218,7 @@ exports.default = function (store) {
 				if (story.state === 'visible') {
 					console.log(story);
 
-					this.innerHTML = `<p>${story.name}</p>`; //update storybox
+					this.innerHTML = `<p>${story.name}<br>${story.description}</p>`; //update storybox
 				}
 			});
 		}
