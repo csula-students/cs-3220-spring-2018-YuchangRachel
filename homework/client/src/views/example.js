@@ -4,7 +4,7 @@ export default function (store) {
 		constructor () {
 			super();
 			this.store = store;
-			console.log('ExampleComponent#Got store', this.store);
+		//	console.log('ExampleComponent#Got store', this.store);
 			// initial DOM rendering
 			this.textContent = this.store.state.example;
 
@@ -20,17 +20,17 @@ export default function (store) {
 		}
 
 		handleStateChange (newState) {
-			console.log('ExampleComponent#stateChange', this);
+		//	console.log('ExampleComponent#stateChange', this);
 			this.textContent = newState.example;
 		}
 
 		connectedCallback () {
-			console.log('ExampleComponent#onConnectedCallback');
+		//	console.log('ExampleComponent#onConnectedCallback');
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback () {
-			console.log('ExampleComponent#onDisconnectedCallback');
+		//	console.log('ExampleComponent#onDisconnectedCallback');
 			this.store.unsubscribe(this.onStateChange);
 		}
 	};

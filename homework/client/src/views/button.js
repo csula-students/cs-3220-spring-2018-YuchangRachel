@@ -13,19 +13,19 @@ export default function (store) {
 		}
 
 		connectedCallback () {
-			console.log('ExampleComponent#onConnectedCallback');
+		//	console.log('ExampleComponent#onConnectedCallback');
 			this.innerHTML = '<button>Collect Cookies</button>';
 			this.addEventListener('click', () => {
 				console.log('Hello click');
 
 				this.store.dispatch({
-					type: constants.actions.INCREMENT
+					type: constants.actions.INCREMENT,
+					payload: 1
 				});
 			});
 		}
 
 		disconnectedCallback () {
-			console.log('ExampleComponent#onDisconnectedCallback');
 			this.store.unsubscribe(this.onStateChange);
 		}
 	};

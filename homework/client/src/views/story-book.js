@@ -12,9 +12,12 @@ export default function (store) {
 			// TODO: display story based on the state "resource" and "stories"
 				this.store.state.stories.forEach(story => {
 				if(story.state === 'visible'){
-					this.innerHTML += `<p>${story.name} <br> ${story.description}</p>`;
+					console.log(story);
+
+					this.innerHTML = `<p>${story.name}</p>`;     //update storybox
 				}
 			});
+		
 		}
 
 		connectedCallback () {

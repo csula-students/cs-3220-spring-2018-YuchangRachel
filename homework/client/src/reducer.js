@@ -5,16 +5,16 @@ import Story from './models/story';
 
 export default function reducer(state, action) {
 	switch (action.type) {
-		case constants.actions.EXAMPLE:
-			state.example = action.payload;
-			return state;
+	case constants.actions.EXAMPLE:
+		state.example = action.payload;
+		return state;
 
-		case constants.actions.INCREMENT:
-			state.counter++;
-			return state;
+	case constants.actions.INCREMENT:
+		state.counter += action.payload;
+		return state;
 
-		case constants.actions.BUY_GENERATOR:
-			state.generators.forEach(generator => {
+	case constants.actions.BUY_GENERATOR:
+		state.generators.forEach(generator => {
 			if(generator.name === action.payload.name){
 				const g = new Generator(generator);
 				let cost = g.getCost(); 
@@ -30,19 +30,19 @@ export default function reducer(state, action) {
 		});
 		return state;
 
-		case constants.actions.CHECK_STORY:
-		state.stories.forEach((story) => {
-			let g = new Story(story);
-			if(g.isUnlockYet(state.counter)){
-				g.state = "visible";
+	case constants.actions.CHECK_STORY:
+		state.stories.forEach(story => {
+			const s = new Story(story);
+			if(s.isUnlockYet(state.counter)){
+				s.state = "visible";
 				story.state = g.state;
 
 			}
 		});
 		return state;
 
-		default:
-			return state;
+	default:
+		return state;
 	}
 }
 

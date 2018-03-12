@@ -27,14 +27,14 @@ export default function (store) {
 		}
 
 		handleStateChange (newState) {
-			console.log('GeneratorComponent#stateChange', this, newState);
+	//		console.log('GeneratorComponent#stateChange', this, newState);
 			const generator = newState.generators[this.dataset.id];
 			this.querySelector('.generator_quantity').innerHTML = generator.quantity;
 			this.querySelector('.generator_button').innerHTML = `${generator.unlockValue} Cookies`;
 		}
 
 		connectedCallback () {
-			console.log('GeneratorComponent#stateChange');
+	//		console.log('GeneratorComponent#stateChange');
 			this.store.subscribe(this.onStateChange);
 		}
 

@@ -15,15 +15,15 @@ export function loop (store) {
 	// hint: read how many "generators" in store and iterate through them to
 	//       count how many value to increment to "resource"
 	// hint: remember to change event through `store.dispatch`
-	console.log('Game loop runnin');
-	let counter = 0;
-	store.state.generators.forEach((element)=>{
-		counter += (element.rate * element.quantity);
+	var morecookie = 0;
+	store.state.generators.forEach((g) => {
+		morecookie += (g.rate * g.quantity);
 	});
+	console.log('generate cookies: ', morecookie);
 
 	store.dispatch({
 					type: constants.actions.INCREMENT,
-					payload: counter
+					payload: morecookie  
 				});
 
 

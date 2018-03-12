@@ -296,7 +296,7 @@ function main() {
 
 	// initialize store
 	const store = new _store2.default(_reducer2.default, initialState);
-	console.log((0, _example2.default)(store));
+	//	console.log(ExampleComponent(store));
 
 	// define web components
 	window.customElements.define('component-example', (0, _example2.default)(store));
@@ -772,15 +772,15 @@ function loop(store) {
 	// hint: read how many "generators" in store and iterate through them to
 	//       count how many value to increment to "resource"
 	// hint: remember to change event through `store.dispatch`
-	console.log('Game loop runnin');
-	let counter = 0;
-	store.state.generators.forEach(element => {
-		counter += element.rate * element.quantity;
+	var morecookie = 0;
+	store.state.generators.forEach(g => {
+		morecookie += g.rate * g.quantity;
 	});
+	console.log('generate cookies: ', morecookie);
 
 	store.dispatch({
 		type: _constants2.default.actions.INCREMENT,
-		payload: counter
+		payload: morecookie
 	});
 
 	// TODO: triggers stories from story to display state if they are passed
@@ -899,7 +899,7 @@ function reducer(state, action) {
 			return state;
 
 		case _constants2.default.actions.INCREMENT:
-			state.counter++;
+			state.counter += action.payload;
 			return state;
 
 		case _constants2.default.actions.BUY_GENERATOR:
@@ -920,7 +920,7 @@ function reducer(state, action) {
 
 		case _constants2.default.actions.CHECK_STORY:
 			state.stories.forEach(story => {
-				let g = new _story2.default(story);
+				const g = new _story2.default(story);
 				if (g.isUnlockYet(state.counter)) {
 					g.state = "visible";
 					story.state = g.state;
@@ -1002,19 +1002,19 @@ exports.default = function (store) {
 		}
 
 		connectedCallback() {
-			console.log('ExampleComponent#onConnectedCallback');
+			//	console.log('ExampleComponent#onConnectedCallback');
 			this.innerHTML = '<button>Collect Cookies</button>';
 			this.addEventListener('click', () => {
 				console.log('Hello click');
 
 				this.store.dispatch({
-					type: _constants2.default.actions.INCREMENT
+					type: _constants2.default.actions.INCREMENT,
+					payload: 1
 				});
 			});
 		}
 
 		disconnectedCallback() {
-			console.log('ExampleComponent#onDisconnectedCallback');
 			this.store.unsubscribe(this.onStateChange);
 		}
 	};
@@ -1048,7 +1048,7 @@ exports.default = function (store) {
 		}
 
 		handleStateChange(newState) {
-			console.log('CounterComponent#stateChange', this, newState);
+			//	console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
 			this.innerHTML = `Cookies: ${newState.counter}`;
 		}
@@ -1080,7 +1080,7 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
-			console.log('ExampleComponent#Got store', this.store);
+			//	console.log('ExampleComponent#Got store', this.store);
 			// initial DOM rendering
 			this.textContent = this.store.state.example;
 
@@ -1096,17 +1096,17 @@ exports.default = function (store) {
 		}
 
 		handleStateChange(newState) {
-			console.log('ExampleComponent#stateChange', this);
+			//	console.log('ExampleComponent#stateChange', this);
 			this.textContent = newState.example;
 		}
 
 		connectedCallback() {
-			console.log('ExampleComponent#onConnectedCallback');
+			//	console.log('ExampleComponent#onConnectedCallback');
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback() {
-			console.log('ExampleComponent#onDisconnectedCallback');
+			//	console.log('ExampleComponent#onDisconnectedCallback');
 			this.store.unsubscribe(this.onStateChange);
 		}
 	};
@@ -1149,14 +1149,14 @@ exports.default = function (store) {
 		}
 
 		handleStateChange(newState) {
-			console.log('GeneratorComponent#stateChange', this, newState);
+			//		console.log('GeneratorComponent#stateChange', this, newState);
 			const generator = newState.generators[this.dataset.id];
 			this.querySelector('.generator_quantity').innerHTML = generator.quantity;
 			this.querySelector('.generator_button').innerHTML = `${generator.unlockValue} Cookies`;
 		}
 
 		connectedCallback() {
-			console.log('GeneratorComponent#stateChange');
+			//		console.log('GeneratorComponent#stateChange');
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -1215,7 +1215,9 @@ exports.default = function (store) {
 			// TODO: display story based on the state "resource" and "stories"
 			this.store.state.stories.forEach(story => {
 				if (story.state === 'visible') {
-					this.innerHTML += `<p>${story.name} <br> ${story.description}</p>`;
+					console.log(story);
+
+					this.innerHTML = `<p>${story.name} <br> ${story.description}</p>`;
 				}
 			});
 		}

@@ -130,7 +130,7 @@ function main () {
 
 	// initialize store
 	const store = new Store(reducer, initialState);
-	console.log(ExampleComponent(store));
+//	console.log(ExampleComponent(store));
 
 	// define web components
 	window.customElements.define('component-example', ExampleComponent(store));

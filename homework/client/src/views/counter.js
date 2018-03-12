@@ -9,7 +9,7 @@ export default function (store) {
 		}
 
 		handleStateChange (newState) {
-			console.log('CounterComponent#stateChange', this, newState);
+		//	console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
 			this.innerHTML = `Cookies: ${newState.counter}`;
 		}
