@@ -1,0 +1,46 @@
+ul{
+	margin: 10px;
+	padding: 10px;
+}
+li{
+	display: inline;
+	margin: 10px;
+}
+.eventname, .trigger {
+	width: 8em;
+	border: 1.5px solid black;
+	padding: 12px 20px;
+	margin: 10px 0;
+}
+.description{
+	width: 25em;
+	height: 10em;
+	margin: auto;
+	overflow: scroll;
+	border: 1.5px solid black;
+}
+button{
+	position: absolute;
+	float: right;
+	right: 44em;
+	border-radius: 8px;
+	width: 11em;
+	border: 1.5px solid black;
+	padding: 12px 20px;
+	margin:20px 0;
+}
+.container{
+	position: relative;
+}
+table{
+	position: absolute;
+	right: 1em;
+	top: 9em;
+	border-collapse: collapse;
+	width: 45%;
+}
+th, td{
+	text-align: left;
+	padding: 8px;
+}
+tr:nth-child(odd){background-color: #f2f2f2}

@@ -24,14 +24,30 @@ public class AdminEventsServlet extends HttpServlet {
 		entries.add(new Event(entries.size(), "digging mine", "Lorem...", 100));
 		getServletContext().setAttribute("event-entries", entries);
 	} 
+	
+
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		Collection<Event> events = dao.getAll();
+
 		// TODO: render the events page HTML
-		String html = "<h1>Incremental Game</h1>";
-		ArrayList<Event> entries = (ArrayList<Event>)getServletContext().getAttribute("event-entries");
-		html += "<h3> Game Information | Generators | Events</h3>";
+		String html = "<head>";
+		html += "<title>Incremental Game</title>";
+		html += "<link rel=\"stylesheet\" type=\"text/css\" href=\"app.css\" />";
+		html += "</head>";
+		html += "<body>";
+		html += "<h1>Incremental Game</h1>";
+		html += "<nav>";
+		html += "<a href=\"admin-infor.html\">Game Information</a>";
+		html += " | ";
+		html += "<a href=\"admin-generators.html\">Generators</a>";
+		html += " | ";
+		html += "<a href=\"admin-events.html\">Events</a>";
+		html += "</nav>";
+
 		html += "<form method='POST'>";
 		html += "<label for='name'>Event name</label><br>";
 		html += "<input name='name' id='name' type='text' /><br>";
@@ -39,11 +55,12 @@ public class AdminEventsServlet extends HttpServlet {
 		html += "<textarea name='description'></textarea><br>";
 		html += "<label for='triggerAt'>Trigger At</label><br>";
 		html += "<input name='triggerAt' id='triggerAt' type='text' /><br>";
-		html += "<button>{Add|Edit}</button>";
-		html += "</form>";
+		html += "</form>";	
+		
+		html += "<button>Add|Edit</button>";
 
 
-		html += "<table border = '1'>";
+		html += "<table>";
 		html += "<tr>";
 		html += "<th>Name</th>";
 		html += "<th>Description</th>";
@@ -51,33 +68,34 @@ public class AdminEventsServlet extends HttpServlet {
 		html += "<th>Action</th>";
 		html += "</tr>";
 
-		for (Event entry: entries){
+		for (Event event: events){
 			html += "<tr>";
-			html += "<td>" + entry.getName() + "</td><td> " + entry.getDescription() + "</td><td>" + entry.getTriggerAt();
-			html += "</td><td><a href='./admin/edit?id=" + entry.getId() +"'>Edit</a> | <a href='./guestbook/delete?id=" + entry.getId() + "'>Delete</a></td>";
+			html += "<td>" + event.getName() + "</td><td> " + event.getDescription() + "</td><td>" + event.getTriggerAt();
+			html += "</td><td><a href='./admin/edit?id=" + event.getId() +"'>Edit</a> | <a href='./guestbook/delete?id=" + event.getId() + "'>Delete</a></td>";
 			html += "</tr>";
 		}	
 		html += "</table>";
+		html += "</body>";
 
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
-		dao.add(entry);
-		Collection<Event> events = dao.getAll();
 		System.out.println(events);
 		out.println(html);
-		getServletContext().setAttribute(entries);
 	}
 
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
-		ArrayList<Event> entries = (ArrayList<Event>)getServletContext().getAttribute("event-entries");
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");   //associate with name in put and textarea
-		int triggerAt = request.getParameter("triggerAt");
+		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		Collection<Event> events = dao.getAll();
 
-		Event entry = new Event(entries.size(), name, description, triggerAt);
-		entries.add(entry);
+		//parse information
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");   
+		int triggerAt = Integer.parseInt(request.getParameter("triggerAt"));
+		Event event = new Event(events.size(), name, description, triggerAt);
+
+		//transaction
+		dao.add(event);
 		response.sendRedirect("/admin/events");
 	}
 }
