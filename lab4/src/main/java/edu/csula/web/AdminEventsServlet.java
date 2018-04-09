@@ -15,7 +15,7 @@ import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
-@WebServlet("/admin/events")
+@WebServlet(loadOnStartup=1, urlPatterns={"/admin/events"})
 public class AdminEventsServlet extends HttpServlet {
 	/*
 	   public void init(){
@@ -124,9 +124,9 @@ public class AdminEventsServlet extends HttpServlet {
 			out.println("<td>" + event.getDescription() + "</td>");
 			out.println("<td>" + event.getTriggerAt() + "</td>");
 			out.println("<td>");
-			out.println("<a href=\"EditServlet?id=" + event.getId() + "\">Edit</a>");
+			out.println("<a href=\"EditEventServlet?id=" + event.getId() +"\">Edit</a>");
 			out.println("|");
-			out.println("<a href=\"DeleteServlet?id=" + event.getId() + "\">delete</a>");
+			out.println("<a href=\"DeleteEventServlet?id=" + event.getId() + "\">delete</a>");
 			out.println("</td>");
 			out.println("</tr>");
 		}
@@ -141,7 +141,6 @@ public class AdminEventsServlet extends HttpServlet {
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
-		//EventsDAOImpl dao = (EventsDAOImpl) getServletContext().getAttribute("dao");
 		Collection<Event> events = dao.getAll();
 
 		//parse information
@@ -152,6 +151,6 @@ public class AdminEventsServlet extends HttpServlet {
 
 		//transaction
 		dao.add(event);
-		response.sendRedirect("events");
+		response.sendRedirect("/admin/events");
 	}
 }
