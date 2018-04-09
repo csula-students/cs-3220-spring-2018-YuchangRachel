@@ -1,23 +1,6 @@
-ul{
-	margin: 10px;
-	padding: 10px;
-}
-li{
+nav{
 	display: inline;
 	margin: 10px;
-}
-.eventname, .trigger {
-	width: 8em;
-	border: 1.5px solid black;
-	padding: 12px 20px;
-	margin: 10px 0;
-}
-.description{
-	width: 25em;
-	height: 10em;
-	margin: auto;
-	overflow: scroll;
-	border: 1.5px solid black;
 }
 button{
 	position: absolute;
@@ -29,11 +12,12 @@ button{
 	padding: 12px 20px;
 	margin:20px 0;
 }
-.container{
+form{
 	position: relative;
 }
 table{
 	position: absolute;
+	text-align: right;
 	right: 1em;
 	top: 9em;
 	border-collapse: collapse;

@@ -32,11 +32,13 @@ public class AdminEventsServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
+		System.out.println(events);
+
 
 		// TODO: render the events page HTML
 		String html = "<head>";
 		html += "<title>Incremental Game</title>";
-		html += "<link rel=\"stylesheet\" type=\"text/css\" href=\"app.css\" />";
+		html += "<link rel=\"stylesheet\" type=\"text/css\" href=\"../style.css\">";
 		html += "</head>";
 		html += "<body>";
 		html += "<h1>Incremental Game</h1>";
@@ -71,13 +73,12 @@ public class AdminEventsServlet extends HttpServlet {
 		for (Event event: events){
 			html += "<tr>";
 			html += "<td>" + event.getName() + "</td><td> " + event.getDescription() + "</td><td>" + event.getTriggerAt();
-			html += "</td><td><a href='./admin/edit?id=" + event.getId() +"'>Edit</a> | <a href='./guestbook/delete?id=" + event.getId() + "'>Delete</a></td>";
+			html += "</td><td><a href='admin/edit?id=" + event.getId() +"'>Edit</a> | <a href='admin/delete?id=" + event.getId() + "'>Delete</a></td>";
 			html += "</tr>";
 		}	
 		html += "</table>";
 		html += "</body>";
 
-		System.out.println(events);
 		out.println(html);
 	}
 
