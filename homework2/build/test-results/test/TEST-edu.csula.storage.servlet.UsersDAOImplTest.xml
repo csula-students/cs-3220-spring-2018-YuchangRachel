@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.storage.servlet.UsersDAOImplTest" tests="3" skipped="0" failures="3" errors="0" timestamp="2018-04-11T19:08:00" hostname="X1Carbon" time="0.453">
+<testsuite name="edu.csula.storage.servlet.UsersDAOImplTest" tests="3" skipped="0" failures="3" errors="0" timestamp="2018-04-13T21:24:21" hostname="X1Carbon" time="0.488">
   <properties/>
-  <testcase name="logout" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.448">
+  <testcase name="logout" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.484">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.csula.storage.servlet.UsersDAOImpl.authenticate(UsersDAOImpl.java:29)
+	at edu.csula.storage.servlet.UsersDAOImpl.authenticate(UsersDAOImpl.java:30)
 	at edu.csula.storage.servlet.UsersDAOImplTest.logout(UsersDAOImplTest.java:62)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -56,7 +56,7 @@
   </testcase>
   <testcase name="getAuthenticatedUser" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.csula.storage.servlet.UsersDAOImpl.authenticate(UsersDAOImpl.java:29)
+	at edu.csula.storage.servlet.UsersDAOImpl.authenticate(UsersDAOImpl.java:30)
 	at edu.csula.storage.servlet.UsersDAOImplTest.getAuthenticatedUser(UsersDAOImplTest.java:54)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -107,9 +107,9 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="authenticate" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.002">
+  <testcase name="authenticate" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.003">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.csula.storage.servlet.UsersDAOImpl.authenticate(UsersDAOImpl.java:29)
+	at edu.csula.storage.servlet.UsersDAOImpl.authenticate(UsersDAOImpl.java:30)
 	at edu.csula.storage.servlet.UsersDAOImplTest.authenticate(UsersDAOImplTest.java:45)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
