@@ -1,0 +1,30 @@
+nav{
+	display: inline;
+	margin: 10px;
+}
+button{
+	position: absolute;
+	float: right;
+	right: 44em;
+	border-radius: 8px;
+	width: 11em;
+	border: 1.5px solid black;
+	padding: 12px 20px;
+	margin:20px 0;
+}
+form{
+	position: relative;
+}
+table{
+	position: absolute;
+	text-align: right;
+	right: 1em;
+	top: 9em;
+	border-collapse: collapse;
+	width: 45%;
+}
+th, td{
+	text-align: left;
+	padding: 8px;
+}
+tr:nth-child(odd){background-color: #f2f2f2}
