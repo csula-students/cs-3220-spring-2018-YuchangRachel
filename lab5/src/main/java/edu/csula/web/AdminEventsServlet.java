@@ -46,8 +46,6 @@ public class AdminEventsServlet extends HttpServlet {
 
 		//transaction
 		dao.add(event);
-		request.setAttribute("eventEntries", events);
-		request.getRequestDispatcher("WEB-INF/admin-events.jsp")
-			.forward(request, response);
+		response.sendRedirect("/admin/events");
 	}
 }
