@@ -3,6 +3,7 @@ package edu.csula.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,22 +15,39 @@ import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
-@WebServlet("/admin/events")
+@WebServlet(loadOnStartup=1, urlPatterns={"/admin/events"})
 public class AdminEventsServlet extends HttpServlet {
+
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		// TODO: render the events page HTML
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
-		System.out.println(events);
-		out.println("<h1>Hello events servlet!</h1>");
+
+		request.setAttribute("eventEntries", events);
+		request.getRequestDispatcher("/WEB-INF/admin-events.jsp")
+			.forward(request, response);
+
+
+
 	}
 
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
+		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		Collection<Event> events = dao.getAll();
+
+		//parse information
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");   
+		int triggerAt = Integer.parseInt(request.getParameter("trigger"));
+		Event event = new Event(events.size(), name, description, triggerAt);
+
+		//transaction
+		dao.add(event);
+		request.setAttribute("eventEntries", events);
+		request.getRequestDispatcher("WEB-INF/admin-events.jsp")
+			.forward(request, response);
 	}
 }
