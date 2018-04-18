@@ -25,12 +25,13 @@ public class UsersDAOImpl implements UsersDAO {
 	public boolean authenticate(String username, String password) {
 		// TODO: check if username/password combination is valid and store the
 		//       username/password into the session
-		List<User> users = (List<User>)context.getAttribute(CONTEXT_NAME); 	
+		//httpsesson setAttribute(string,object)
+		
+		User user= new User(0, "admin", "cs3220password");
 
-		for (User user : users){
-			if((user.getUsername() == username) && (user.getPassword() == password)){
-				return true;
-			}
+		if((user.getUsername().equals(username)) && (user.getPassword().equals(password))){
+			this.context.setAttribute(CONTEXT_NAME, user);
+			return true;
 		}
 
 		return false;
@@ -39,16 +40,16 @@ public class UsersDAOImpl implements UsersDAO {
 	@Override
 	public Optional<User> getAuthenticatedUser() {
 		// TODO: return the authenticated user if there is any
-		
-	
-		return Optional.empty();
+		User user = (User)context.getAttribute(CONTEXT_NAME);
+		if (user == null){
+			return Optional.empty();
+		}
+		return Optional.of(user);
 	}
 
 	@Override
 	public void logout() {
 		// TOOD: log user out using `invalidate`
-		if (this.context != null){
-			this.context.invalidate();
-		}
+		this.context.invalidate();
 	}
 }
