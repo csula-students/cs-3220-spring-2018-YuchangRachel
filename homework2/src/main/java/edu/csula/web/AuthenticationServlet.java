@@ -49,16 +49,19 @@ public class AuthenticationServlet extends HttpServlet {
 		out.println("</html>");
 	}
 
+	// ./ or / current path
+	// ../ upper path
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle login
 		String username = request.getParameter("name");
 		String password = request.getParameter("pin");
+		HttpSession session = request.getSession();
+		UsersDAO dao = new UsersDAOImpl(session);
 
-		if ((username.equals("admin")) && (password.equals("cs3220password"))){
-			HttpSession session = request.getSession();
-			session.setAttribute("name", username);
-			response.sendRedirect("Admin*Servlet");
+		if (dao.authenticate(username, password)){
+			response.sendRedirect("../admin/events");
+			response.sendRedirect("../admin/generators");
 		}
 		else {
 			response.sendRedirect("/admin/auth");
@@ -70,8 +73,8 @@ public class AuthenticationServlet extends HttpServlet {
 	public void doDelete( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle logout
 		HttpSession session = request.getSession();
-		session.invalidate();
-
+		UsersDAO dao = new UsersDAOImpl(session);
+		dao.logout();
 		response.sendRedirect("/admin/auth");
 	}
 }
