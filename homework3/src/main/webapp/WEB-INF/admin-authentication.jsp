@@ -5,6 +5,7 @@ pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="../appAuth.css">
 		<title>Incremental Game</title>
 	</head>
@@ -12,7 +13,7 @@ pageEncoding="ISO-8859-1"%>
 	<body>
 		<h1>Incremental Game Framework</h1>
 
-		<form action="admin/auth" method="post">
+		<form method="post">
 			<label for="username">Username: </label><br>
 			<input type="text" name="name" id="username"><br>
 			<label for="password">Password: </label><br>

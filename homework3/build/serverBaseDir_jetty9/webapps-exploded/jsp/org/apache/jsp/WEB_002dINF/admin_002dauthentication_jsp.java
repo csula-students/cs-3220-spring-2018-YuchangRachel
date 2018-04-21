@@ -47,6 +47,7 @@ public final class admin_002dauthentication_jsp extends org.apache.jasper.runtim
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("\t<head>\n");
+      out.write("\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
       out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../appAuth.css\">\n");
       out.write("\t\t<title>Incremental Game</title>\n");
       out.write("\t</head>\n");
@@ -54,7 +55,7 @@ public final class admin_002dauthentication_jsp extends org.apache.jasper.runtim
       out.write("\t<body>\n");
       out.write("\t\t<h1>Incremental Game Framework</h1>\n");
       out.write("\n");
-      out.write("\t\t<form action=\"admin/auth\" method=\"post\">\n");
+      out.write("\t\t<form method=\"post\">\n");
       out.write("\t\t\t<label for=\"username\">Username: </label><br>\n");
       out.write("\t\t\t<input type=\"text\" name=\"name\" id=\"username\"><br>\n");
       out.write("\t\t\t<label for=\"password\">Password: </label><br>\n");
