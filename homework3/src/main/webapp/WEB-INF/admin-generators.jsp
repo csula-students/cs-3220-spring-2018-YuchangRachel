@@ -18,7 +18,7 @@
 
 		<a id="log" href="../admin/auth">Log out</a>
 
-		<form action="/admin/generators" method="post">
+		<form method="post">
 			<label for="generatorname">Generator Name</label><br>
 			<input type="text" name="name" id="generatorname"><br>
 			<label for="generatorrate">Generator Rate</label><br>
@@ -38,6 +38,7 @@
 				<th>Rate</th>
 				<th>Cost</th>
 				<th>Unlock At</th>
+				<th>Description</th>
 				<th>Action</th>
 			</tr>
 			
@@ -49,7 +50,7 @@
 				<td>${generator.getUnlockAt()}</td>
 				<td>${generator.getDescription()}</td>
 				<td>
-					<a href='EditGeneratorServlet?id=${event.getId()}'>Edit</a> | <a href='DeleteGeneratorServlet?id=${event.getId()}'>Delete</a>
+					<a href='EditGeneratorServlet?id=${generator.getId()}'>Edit</a> | <a href='DeleteGeneratorServlet?id=${generator.getId()}'>Delete</a>
 
 				</td>
 			</tr>

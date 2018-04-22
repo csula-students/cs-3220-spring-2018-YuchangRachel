@@ -30,18 +30,8 @@ public class EditEventServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		String html = "";
-		html += "<form method='POST'>";
-		html += "<h2>Edit Comment</h2>";
-		html += "<label for='name'>Name: </label>";
-		html += "<input type='text'name='name' id='eventname' value='"+ event.getName() + "' />";
-		html += "<label for='eventdescrib'>Event Descrption</label><br>";
-		html += "<textarea name='description' id='eventdescrib'>" + event.getDescription() + "</textarea>";
-		html += "<label for='triggerAt'>Trigger At</label><br>";
-		html += "<input type='number' name='trigger' id='triggerAt' value='"+ event.getTriggerAt() + "' /><br>";
-		html += "<button>Submit</button>";
-		html += "</form>";
-		out.println(html);
+		request.getRequestDispatcher("../WEB-INF/edit-event-servlet.jsp")
+				.forward(request, response);
 	}
 
 

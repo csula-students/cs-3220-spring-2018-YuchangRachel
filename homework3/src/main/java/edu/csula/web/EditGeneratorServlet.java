@@ -18,9 +18,9 @@ import edu.csula.models.Generator;
 @WebServlet("/admin/EditGeneratorServlet")
 public class EditGeneratorServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
 		Collection<Generator> generators = dao.getAll();
-		int id = Integer.parseInt(request.getParameter("id"));
 		Generator generator = null;
 		for (Generator e : generators){
 			if (e.getId() == id){
@@ -30,22 +30,8 @@ public class EditGeneratorServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		String html = "";
-		html += "<form method='POST'>";
-		html += "<h2>Edit Generators Information</h2>";
-		html += "<label for='generatorname'>Generator Name: </label><br>";
-		html += "<input type='text'name='name' id='generatorname' value='"+ generator.getName() + "' /><br>";
-		html += "<label for='generatorrate'>Generator Rate: </label><br>";
-		html += "<input type='number' name='rate' id='generatorrate' value='" + generator.getRate() + "'/><br>";
-		html += "<label for='basecost'>Base Cost: </label><br>";
-		html += "<input type='number' name='cost' id='basecost' value='" + generator.getBaseCost() + "'/><br>";
-		html += "<label for='unlockat'>Unlock At: </label><br>";
-		html += "<input type='number' name='unlock' id='unlockat' value='" + generator.getUnlockAt() + "'/><br>";
-		html += "<label for='generatorDescription'>Generator Descrption</label><br>";
-		html += "<textarea name='description' id='generatorDescription'>" + generator.getDescription() + "</textarea>";
-		html += "<button>Submit</button>";
-		html += "</form>";
-		out.println(html);
+		request.getRequestDispatcher("../WEB-INF/edit-generator-servlet.jsp")
+            .forward(request, response);
 	}
 
 
