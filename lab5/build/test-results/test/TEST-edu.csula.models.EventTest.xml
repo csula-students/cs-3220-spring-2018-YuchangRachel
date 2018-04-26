@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.models.EventTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-04-15T04:21:52" hostname="X1Carbon" time="0.002">
+<testsuite name="edu.csula.models.EventTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-04-26T02:50:32" hostname="X1Carbon" time="0.002">
   <properties/>
   <testcase name="testEquals" classname="edu.csula.models.EventTest" time="0.001"/>
   <testcase name="testNotEquals" classname="edu.csula.models.EventTest" time="0.0"/>

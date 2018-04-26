@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.storage.servlet.EventsDAOImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-04-15T04:21:52" hostname="X1Carbon" time="0.544">
+<testsuite name="edu.csula.storage.servlet.EventsDAOImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-04-26T02:50:32" hostname="X1Carbon" time="0.552">
   <properties/>
-  <testcase name="getAll" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.538"/>
-  <testcase name="remove" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.001"/>
-  <testcase name="getById" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.001"/>
+  <testcase name="getAll" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.53"/>
+  <testcase name="remove" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.002"/>
+  <testcase name="getById" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.015"/>
   <testcase name="add" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.001"/>
   <testcase name="set" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.001"/>
   <testcase name="getAllWhenNull" classname="edu.csula.storage.servlet.EventsDAOImplTest" time="0.001"/>

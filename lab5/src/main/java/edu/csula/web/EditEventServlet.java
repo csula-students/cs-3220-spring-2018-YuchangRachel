@@ -50,20 +50,25 @@ public class EditEventServlet extends HttpServlet {
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
 		int id = Integer.parseInt(request.getParameter("id"));
+		/*
 		Event event = null;
 		for (Event e : events){
 			if (e.getId() == id){
 				event = e;
 			}
 		}
+		*/
 
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");   
 		int triggerAt = Integer.parseInt(request.getParameter("trigger"));
+		/*
 		event.setName(name);
 		event.setDescription(description);
 		event.setTriggerAt(triggerAt);
+		*/
 
+		dao.set(id, new Event(events.size(), name, description, triggerAt));
 		response.sendRedirect("/admin/events");
 	}
 }

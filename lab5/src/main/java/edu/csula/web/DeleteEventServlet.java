@@ -22,11 +22,15 @@ public class DeleteEventServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		List<Event> events = dao.getAll();
+		/*
 		for (int i = 0; i < events.size(); i++){
 			if (events.get(i).getId() == id){
 				events.remove(i);
 			}
 		}
+		*/
+
+		dao.remove(id);
 
 		response.sendRedirect("/admin/events");
 	}
