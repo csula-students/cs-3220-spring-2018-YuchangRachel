@@ -54,25 +54,31 @@ public class EditGeneratorServlet extends HttpServlet {
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
 		Collection<Generator> generators = dao.getAll();
 		int id = Integer.parseInt(request.getParameter("id"));
+		/*
 		Generator generator = null;
 		for (Generator e : generators){
 			if (e.getId() == id){
 				generator = e;
 			}
 		}
+		*/
+
 
 		String name = request.getParameter("name");
 		int rate = Integer.parseInt(request.getParameter("rate"));
 		int baseCost = Integer.parseInt(request.getParameter("cost"));
 		int unlockAt = Integer.parseInt(request.getParameter("unlock"));
 		String description = request.getParameter("description");
-
+		
+		/*
 		generator.setName(name);
 		generator.setRate(rate);
 		generator.setBaseCost(baseCost);
 		generator.setUnlockAt(unlockAt);
 	    generator.setDescription(description);
-
+		*/
+		
+		dao.set(id, new Generator(generators.size(), name, description, rate, baseCost, unlockAt));
 		response.sendRedirect("/admin/generators");
 	}
 }

@@ -22,11 +22,15 @@ public class DeleteGeneratorServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
 		List<Generator> generators = dao.getAll();
+		/*
 		for (int i = 0; i < generators.size(); i++){
 			if (generators.get(i).getId() == id){
 				generators.remove(i);
 			}
 		}
+		*/
+
+		dao.remove(id);
 
 		response.sendRedirect("/admin/generators");
 	}
