@@ -15,23 +15,33 @@ import edu.csula.storage.servlet.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+import edu.csula.models.User;
+
 @WebServlet("/admin/DeleteGeneratorServlet")
 public class DeleteGeneratorServlet extends HttpServlet {
 
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UsersDAO dao1 = new UsersDAOImpl(request.getSession());
+
+		if (!dao1.getAuthenticatedUser().isPresent()) {
+			response.sendRedirect("auth");
+		}
+
 		int id = Integer.parseInt(request.getParameter("id"));
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
 		List<Generator> generators = dao.getAll();
 		/*
-		for (int i = 0; i < generators.size(); i++){
-			if (generators.get(i).getId() == id){
-				generators.remove(i);
-			}
-		}
-		*/
+		   for (int i = 0; i < generators.size(); i++){
+		   if (generators.get(i).getId() == id){
+		   generators.remove(i);
+		   }
+		   }
+		   */
 
 		dao.remove(id);
 
-		response.sendRedirect("/admin/generators");
+		response.sendRedirect("generators");
 	}
 }

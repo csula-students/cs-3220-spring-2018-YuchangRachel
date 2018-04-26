@@ -97,7 +97,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 			out.println("</html>");
 		}
 		else {
-			response.sendRedirect("../admin/auth");
+			response.sendRedirect("auth");
 		}
 
 	}
@@ -119,6 +119,6 @@ public class AdminGeneratorsServlet extends HttpServlet {
 
 		//transaction
 		dao.add(generator);
-		response.sendRedirect("/admin/generators");
+		response.sendRedirect("generators");
 	}
 }

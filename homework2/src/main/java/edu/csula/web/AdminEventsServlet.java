@@ -105,7 +105,7 @@ public class AdminEventsServlet extends HttpServlet {
 			out.println("</html>");
 		}
 		else {
-			response.sendRedirect("/admin/auth");
+			response.sendRedirect("auth");
 		}
 	}
 
@@ -124,6 +124,6 @@ public class AdminEventsServlet extends HttpServlet {
 
 		//transaction
 		dao.add(event);
-		response.sendRedirect("/admin/events");
+		response.sendRedirect("events");
 	}
 }
