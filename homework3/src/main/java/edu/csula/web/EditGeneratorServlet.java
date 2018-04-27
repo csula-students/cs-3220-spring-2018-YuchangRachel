@@ -10,28 +10,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 import edu.csula.storage.servlet.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+import edu.csula.models.User;
+
 @WebServlet("/admin/EditGeneratorServlet")
 public class EditGeneratorServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
-		Collection<Generator> generators = dao.getAll();
-		Generator generator = null;
-		for (Generator e : generators){
-			if (e.getId() == id){
-				generator = e;
-			}
-		}
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		request.getRequestDispatcher("../WEB-INF/edit-generator-servlet.jsp")
-            .forward(request, response);
+		HttpSession session = request.getSession();
+		UsersDAO dao1 = new UsersDAOImpl(session);
+
+		if (dao1.getAuthenticatedUser().isPresent()){
+			int id = Integer.parseInt(request.getParameter("id"));
+			GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+			Collection<Generator> generators = dao.getAll();
+			Generator generator = null;
+			for (Generator e : generators){
+				if (e.getId() == id){
+					generator = e;
+				}
+			}
+
+			request.getRequestDispatcher("/WEB-INF/edit-generator-servlet.jsp")
+				.forward(request, response);
+		}
+		else {
+			response.sendRedirect("auth");
+		}
 	}
 
 
@@ -39,13 +53,8 @@ public class EditGeneratorServlet extends HttpServlet {
 		// TODO: handle upsert transaction
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
 		Collection<Generator> generators = dao.getAll();
+
 		int id = Integer.parseInt(request.getParameter("id"));
-		Generator generator = null;
-		for (Generator e : generators){
-			if (e.getId() == id){
-				generator = e;
-			}
-		}
 
 		String name = request.getParameter("name");
 		int rate = Integer.parseInt(request.getParameter("rate"));
@@ -53,12 +62,8 @@ public class EditGeneratorServlet extends HttpServlet {
 		int unlockAt = Integer.parseInt(request.getParameter("unlock"));
 		String description = request.getParameter("description");
 
-		generator.setName(name);
-		generator.setRate(rate);
-		generator.setBaseCost(baseCost);
-		generator.setUnlockAt(unlockAt);
-	    generator.setDescription(description);
+		dao.set(id, new Generator(generators.size(), name, description, rate, baseCost, unlockAt));
 
-		response.sendRedirect("/admin/generators");
+		response.sendRedirect("generators");
 	}
 }

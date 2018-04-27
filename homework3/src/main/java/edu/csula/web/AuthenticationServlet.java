@@ -27,7 +27,7 @@ public class AuthenticationServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		doDelete(request, response);
-		request.getRequestDispatcher("../WEB-INF/admin-authentication.jsp")
+		request.getRequestDispatcher("/WEB-INF/admin-authentication.jsp")
 			.forward(request, response);
 	}
 
@@ -40,10 +40,10 @@ public class AuthenticationServlet extends HttpServlet {
 		UsersDAO dao = new UsersDAOImpl(session);
 
 		if (dao.authenticate(username, password)){
-			response.sendRedirect("../admin/events");
+			response.sendRedirect("events");
 		}
 		else {
-			response.sendRedirect("../admin/auth");
+			response.sendRedirect("auth");
 		}
 
 	}
