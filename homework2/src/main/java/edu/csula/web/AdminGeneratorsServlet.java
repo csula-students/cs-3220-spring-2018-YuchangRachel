@@ -75,7 +75,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 			out.println("<th>Rate</th>");
 			out.println("<th>Cost</th>");
 			out.println("<th>Unlock At</th>");
-			out.println("<th>Description</th>")
+			out.println("<th>Description</th>");
 			out.println("<th>Action</th>");
 			out.println("</tr>");
 			for (Generator generator : generators) {
