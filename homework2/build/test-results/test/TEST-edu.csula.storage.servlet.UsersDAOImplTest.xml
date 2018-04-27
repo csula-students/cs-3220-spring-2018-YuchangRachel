@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="edu.csula.storage.servlet.UsersDAOImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-04-27T00:18:27" hostname="X1Carbon" time="0.435">
+  <properties/>
+  <testcase name="logout" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.432"/>
+  <testcase name="getAuthenticatedUser" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.001"/>
+  <testcase name="authenticate" classname="edu.csula.storage.servlet.UsersDAOImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
