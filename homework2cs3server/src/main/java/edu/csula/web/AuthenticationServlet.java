@@ -49,8 +49,6 @@ public class AuthenticationServlet extends HttpServlet {
 		out.println("</html>");
 	}
 
-	// ./ or / current path
-	// ../ upper path
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle login
@@ -74,6 +72,6 @@ public class AuthenticationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UsersDAO dao = new UsersDAOImpl(session);
 		dao.logout();
-		response.sendRedirect("/admin/auth");
+		response.sendRedirect("auth");
 	}
 }
