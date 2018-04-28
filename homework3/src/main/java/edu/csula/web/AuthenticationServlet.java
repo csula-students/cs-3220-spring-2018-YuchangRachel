@@ -26,7 +26,9 @@ public class AuthenticationServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
+		//log out first
 		doDelete(request, response);
+
 		request.getRequestDispatcher("/WEB-INF/admin-authentication.jsp")
 			.forward(request, response);
 	}
