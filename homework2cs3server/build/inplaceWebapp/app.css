@@ -1,0 +1,48 @@
+nav{
+	display: inline;
+	margin: 10px;
+}
+body{
+	font-size: 20px;
+}
+input[type=text]{
+	margin:8px 0;
+	box-sizing:border-box;
+}
+textarea{
+	width: 35%;
+	height:150px;
+	padding: 12px 20px;
+	box-sizing:border-box;
+	resize:none;
+}
+button{
+	position: absolute;
+	float: right;
+	right: 44em;
+	border-radius: 8px;
+	width: 11em;
+	border: 1.5px solid black;
+	padding: 12px 20px;
+	margin:20px 0;
+}
+form{
+	position: relative;
+}
+table{
+	position: absolute;
+	text-align: right;
+	right: 1em;
+	top: 9em;
+	border-collapse: collapse;
+	width: 45%;
+}
+th, td{
+	text-align: left;
+	padding: 8px;
+}
+tr:nth-child(odd){background-color: #f2f2f2}
+
+#log {
+	float: right;
+}
