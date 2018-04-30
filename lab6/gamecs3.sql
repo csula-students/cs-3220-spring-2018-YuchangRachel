@@ -1,3 +1,5 @@
+/* https://github.com/csula/cs3220-spring-2018/blob/master/notes/labs/lab6.md
+*/
 CREATE TABLE users (
      id INTEGER AUTO_INCREMENT PRIMARY KEY,
      username VARCHAR(255) NOT NULL,
