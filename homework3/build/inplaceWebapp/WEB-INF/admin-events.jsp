@@ -18,7 +18,7 @@
 
 		<a id="log" href="../admin/auth">Log out</a>
 
-		<form action="/admin/events" method="post">
+		<form method="post">
 			<label for='eventname'>Event name</label><br>
 			<input name='name' id='eventname' type='text' /><br>
 			<label for='eventdescrib'>Event Descrption</label><br>

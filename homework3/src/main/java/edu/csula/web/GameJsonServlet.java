@@ -25,5 +25,9 @@ public class GameJsonServlet extends HttpServlet {
 		String jsonString = gson.toJson(u);
 
 		out.println(jsonString);
+
+		response.setContentType("text/html");
+		request.getRequestDispatcher("/WEB-INF/game.jsp").forward(request, response);
 	}
+
 }

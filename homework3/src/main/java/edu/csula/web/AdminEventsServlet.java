@@ -20,7 +20,7 @@ import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
 import edu.csula.models.User;
 
-@WebServlet(loadOnStartup=1, urlPatterns={"/admin/events"})
+@WebServlet("/admin/events")
 public class AdminEventsServlet extends HttpServlet {
 
 	@Override

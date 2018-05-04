@@ -71,7 +71,7 @@ public final class admin_002devents_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("\n");
       out.write("\t\t<a id=\"log\" href=\"../admin/auth\">Log out</a>\n");
       out.write("\n");
-      out.write("\t\t<form action=\"/admin/events\" method=\"post\">\n");
+      out.write("\t\t<form method=\"post\">\n");
       out.write("\t\t\t<label for='eventname'>Event name</label><br>\n");
       out.write("\t\t\t<input name='name' id='eventname' type='text' /><br>\n");
       out.write("\t\t\t<label for='eventdescrib'>Event Descrption</label><br>\n");

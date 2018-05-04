@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.storage.servlet.GeneratorsDAOImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-05-04T05:13:58" hostname="X1Carbon" time="0.165">
+<testsuite name="edu.csula.storage.servlet.GeneratorsDAOImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-05-04T22:07:45" hostname="X1Carbon" time="0.168">
   <properties/>
-  <testcase name="getAll" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.16"/>
+  <testcase name="getAll" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.163"/>
   <testcase name="remove" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.001"/>
   <testcase name="getById" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.001"/>
   <testcase name="add" classname="edu.csula.storage.servlet.GeneratorsDAOImplTest" time="0.0"/>
