@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.csula.models.EventTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-04-27T18:32:15" hostname="X1Carbon" time="0.003">
+<testsuite name="edu.csula.models.EventTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-05-04T05:13:57" hostname="X1Carbon" time="0.002">
   <properties/>
   <testcase name="testEquals" classname="edu.csula.models.EventTest" time="0.002"/>
-  <testcase name="testNotEquals" classname="edu.csula.models.EventTest" time="0.001"/>
+  <testcase name="testNotEquals" classname="edu.csula.models.EventTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
