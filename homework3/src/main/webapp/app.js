@@ -28,5 +28,5 @@ pubsub.subscribe(data => {
 });
 
 document.querySelector('.button').addEventListener('click', () => {
-	pubsub.publish(++window.incrementalGame.state.counter);
+	pubsub.publish(++window.game.state.counter);
 });
