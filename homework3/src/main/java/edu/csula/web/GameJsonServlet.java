@@ -8,7 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.csula.models.User;
+import edu.csula.models.State;
+
+import java.util.Collection;
+
+import edu.csula.storage.servlet.EventsDAOImpl;
+import edu.csula.storage.EventsDAO;
+import edu.csula.models.Event;
+
+import edu.csula.storage.servlet.GeneratorsDAOImpl;
+import edu.csula.storage.GeneratorsDAO;
+import edu.csula.models.Generator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,12 +29,17 @@ public class GameJsonServlet extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 
-		User u = new User(0, "admin", "cs3220password");
+		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		Collection<Event> events = dao.getAll();
+		GeneratorsDAO dao1 = new GeneratorsDAOImpl(getServletContext());
+		Collection<Generator> generators = dao1.getAll();
+
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
-		String jsonString = gson.toJson(u);
+		String state = gson.toJson(new State(events, generators));
 
-		out.println(jsonString);
+		out.println(state);
+		request.setAttribute("state", state);
 
 		response.setContentType("text/html");
 		request.getRequestDispatcher("/WEB-INF/game.jsp").forward(request, response);
