@@ -38,7 +38,7 @@ public class EventsDAOImpl implements EventsDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return new ArrayList<>();
+			return list;
 		}
 		return list;
 	}
@@ -67,11 +67,10 @@ public class EventsDAOImpl implements EventsDAO {
 	public void set(int id, Event event) {
 		// TODO: update specific event by id
 		try (Connection c = context.getConnection(); PreparedStatement pstmt = c.prepareStatement(setQuery)){
-			pstmt.setInt(1, id);
-			pstmt.setString(2, event.getName());
-			pstmt.setString(3, event.getDescription());
-			pstmt.setInt(4, event.getTriggerAt());
-			pstmt.setInt(5, event.getId());
+			pstmt.setString(1, event.getName());
+			pstmt.setString(2, event.getDescription());
+			pstmt.setInt(3, event.getTriggerAt());
+			pstmt.setInt(4, id);	
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,7 +94,7 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void remove(int id) {
 		// TODO: implement jdbc logic to remove event by id
-		try (Connection c = context.getConnection(); PreparedStatement pstmt = c.prepareStatement("DELETE FROM events WHERE events.id = ? ")) {
+		try (Connection c = context.getConnection(); PreparedStatement pstmt = c.prepareStatement(removeQuery)) {
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
