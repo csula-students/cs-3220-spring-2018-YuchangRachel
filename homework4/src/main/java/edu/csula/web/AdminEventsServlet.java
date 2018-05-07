@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+import edu.csula.models.User;
+
 import edu.csula.storage.EventsDAO;
 import edu.csula.storage.mysql.*;
 import edu.csula.models.*;
@@ -21,14 +25,21 @@ public class AdminEventsServlet extends HttpServlet {
 
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EventsDAO dao = new EventsDAOImpl(new Database());
+		HttpSession session = request.getSession();
+		UsersDAO dao1 = new UsersDAOImpl(session);
 
-		Collection<Event> events = dao.getAll();
+		if (dao1.getAuthenticatedUser().isPresent()){
+			EventsDAO dao = new EventsDAOImpl(new Database());
 
-		request.setAttribute("eventEntries", events);
-		request.getRequestDispatcher("/WEB-INF/admin-events.jsp")
-			.forward(request, response);
+			Collection<Event> events = dao.getAll();
 
+			request.setAttribute("eventEntries", events);
+			request.getRequestDispatcher("/WEB-INF/admin-events.jsp")
+				.forward(request, response);
+		}
+		else {
+			response.sendRedirect("auth");
+		}
 	}
 
 

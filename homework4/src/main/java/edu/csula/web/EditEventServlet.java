@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.*;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+import edu.csula.models.User;
+
 import edu.csula.storage.EventsDAO;
 import edu.csula.storage.mysql.*;
 import edu.csula.models.*;
@@ -19,19 +23,26 @@ import edu.csula.models.*;
 @WebServlet("/admin/EditEventServlet")
 public class EditEventServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		EventsDAO dao = new EventsDAOImpl(new Database());
-		Collection<Event> events = dao.getAll();
-		int id = Integer.parseInt(request.getParameter("id"));
-		Event event = null;
-		for (Event e : events){
-			if (e.getId() == id){
-				event = e;
-			}
-		}
+		HttpSession session = request.getSession();
+		UsersDAO dao1 = new UsersDAOImpl(session);
 
-		request.getRequestDispatcher("/WEB-INF/edit-event-servlet.jsp")
+		if (dao1.getAuthenticatedUser().isPresent()){
+			EventsDAO dao = new EventsDAOImpl(new Database());
+			Collection<Event> events = dao.getAll();
+			int id = Integer.parseInt(request.getParameter("id"));
+			Event event = null;
+			for (Event e : events){
+				if (e.getId() == id){
+					event = e;
+				}
+			}
+
+			request.getRequestDispatcher("/WEB-INF/edit-event-servlet.jsp")
 				.forward(request, response);
+		}
+		else {
+			response.sendRedirect("auth");
+		}
 	}
 
 

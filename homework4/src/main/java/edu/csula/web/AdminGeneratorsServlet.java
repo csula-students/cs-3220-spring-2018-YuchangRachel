@@ -1,7 +1,6 @@
 package edu.csula.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -10,26 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.Collection;
 
-import edu.csula.storage.servlet.GeneratorsDAOImpl;
-import edu.csula.storage.GeneratorsDAO;
-import edu.csula.models.Generator;
-
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
 import edu.csula.models.User;
+
+import edu.csula.storage.GeneratorsDAO;
+import edu.csula.storage.mysql.*;
+import edu.csula.models.*;
 
 @WebServlet("/admin/generators")
 public class AdminGeneratorsServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-
 		HttpSession session = request.getSession(); 
 		UsersDAO dao1 = new UsersDAOImpl(session);
 
 		if (dao1.getAuthenticatedUser().isPresent()) {
-			GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+			GeneratorsDAO dao = new GeneratorsDAOImpl(new Database());
 			Collection<Generator> generators = dao.getAll();
 			
 			request.setAttribute("generatorEntries", generators);
@@ -46,7 +42,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
-		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		GeneratorsDAO dao = new GeneratorsDAOImpl(new Database());
 		Collection<Generator> generators = dao.getAll();
 
 		//parse information
