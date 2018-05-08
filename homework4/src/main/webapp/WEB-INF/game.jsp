@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="../game.css">
+		<link rel="stylesheet" href="game.css">
 		<title>Incremental game</title>
 	</head>
 	<body>
