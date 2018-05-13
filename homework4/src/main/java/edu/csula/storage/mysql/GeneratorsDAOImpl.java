@@ -17,7 +17,7 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 	//       use these queries variable accordingly in the method below
 	//       should the same dataname as in database
 	protected static final String getAllQuery = "SELECT * FROM generators;";
-	protected static final String getByIdQuery = "SELECT 8 FROM generators WHERE generators.id = ?";
+	protected static final String getByIdQuery = "SELECT * FROM generators WHERE generators.id = ?";
 	protected static final String setQuery = "UPDATE generators SET name = ?, description = ?, rate = ?, base_cost = ?, unlock_at = ? WHERE generators.id = ?";
 	protected static final String addQuery = "INSERT INTO generators(name, description, rate, base_cost,unlock_at) VALUE (?, ?, ?, ?, ?)";
 	protected static final String removeQuery = "DELETE FROM generators WHERE generators.id = ?";
