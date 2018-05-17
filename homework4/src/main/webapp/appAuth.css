@@ -1,0 +1,22 @@
+form {
+	text-align: center;
+	position: relative;
+}
+input {
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+}
+body {
+	font-size: 20px;
+}
+input[type=submit]{
+	position: absolute;
+	float: right;
+	right: 40%;
+	border-radius: 8px;
+	width: 7em;
+	border: 1.5px solid black;
+	padding: 12px 20px;
+	margin:20px 0;
+}
